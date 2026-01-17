@@ -95,10 +95,10 @@ desktop.ini
 .env.*
 
 # Local data and outputs (ignore large data files)
-data/
+
 outputs/
 models/
-1_processed_loan_data_csv.csv
+
 
 # Other
 *.pem
