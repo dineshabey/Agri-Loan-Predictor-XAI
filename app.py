@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
+import os
 
 
 # --- 1. CONFIG & BILINGUAL MAPPING ---
@@ -35,6 +36,8 @@ DIVISION_MAP = {
 }
 
 # --- 2. DATA & MODEL LOADING ---
+# Path to processed data file inside the project's data folder
+DATA_FILE_PATH = os.path.join("data", "processed", "1_processed_loan_data_csv.csv")
 @st.cache_resource # Use cache_resource for the model to keep it in memory
 def load_ml_model():
     try:
@@ -48,7 +51,7 @@ model = load_ml_model()
 @st.cache_data
 def load_bank_data():
     try:
-        df = pd.read_csv('1_processed_loan_data_csv.csv')
+        df = pd.read_csv(DATA_FILE_PATH)
         df.columns = df.columns.str.strip()
         months = ['Jan_Recovery', 'Feb_Recovery', 'Mar_Recovery', 'Apr_Recovery', 
                   'May_Recovery', 'Jun_Recovery', 'Jul_Recovery', 'Aug_Recovery', 
@@ -549,8 +552,16 @@ st.markdown("""
 @st.cache_data
 def load_and_predict():
     # Load actual bank data
-    df = pd.read_csv('1_processed_loan_data_csv.csv')
-    df.columns = df.columns.str.strip()
+    try:
+        # Use the DATA_FILE_PATH constant if available, else fallback to relative path
+        csv_path = globals().get('DATA_FILE_PATH', os.path.join("data", "processed", "1_processed_loan_data_csv.csv"))
+        if not os.path.exists(csv_path):
+            csv_path = os.path.join(os.path.dirname(__file__), "data", "processed", "1_processed_loan_data_csv.csv")
+        df = pd.read_csv(csv_path)
+        df.columns = df.columns.str.strip()
+    except Exception as e:
+        st.error(f"Failed to load data for predictions: {e}")
+        return pd.DataFrame()
     
     # Feature Engineering (Actual)
     months = ['Jan_Recovery', 'Feb_Recovery', 'Mar_Recovery', 'Apr_Recovery', 
