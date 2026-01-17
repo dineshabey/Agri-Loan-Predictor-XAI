@@ -29,6 +29,21 @@ The repository follows this layout:
 └── README.md               # Project documentation & setup guide
 ```
 
+**All Reports and data**
+
+This folder contains raw data, trained model artifacts, notebooks used for analysis/training, and final report files (PDFs, DOCX). It's provided as a consolidated archive of project inputs and deliverables.
+
+Example folder structure inside `All Reports and data`:
+
+```
+All Reports and data/
+├── raw/                   # Raw input datasets (CSV, Excel, etc.)
+├── models/                # Trained model artifacts (.pkl, .joblib)
+├── notebooks/             # Analysis & training notebooks (.ipynb)
+└── Report/                # Final reports, deliverables, and PDFs
+```
+
+
 Quickstart (Windows, PowerShell)
 1. Create & activate the venv (already created in this workspace):
 
