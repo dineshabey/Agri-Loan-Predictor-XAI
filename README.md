@@ -9,6 +9,26 @@ Contents
 - `1_processed_loan_data_csv.csv` — sample dataset used by the app
 - `credit_risk_model.pkl`, `ordinal_encoder.pkl` — example saved model artifacts (if present)
 
+Project structure
+-----------------
+The repository follows this layout:
+
+```
+├── data/
+│   ├── raw/                # Original localized data
+│   └── processed/          # English-standardized CSVs
+├── notebooks/
+│   ├── preprocessing.ipynb # Data cleaning & translation scripts
+│   └── model_training.ipynb# HistGradientBoosting training & evaluation
+├── scripts/
+│   ├── explainability.py   # SHAP & Waterfall logic
+│   └── app.py              # Streamlit UI Source Code
+├── models/
+│   └── final_model.pkl     # Saved Gradient Boosting model
+├── requirements.txt        # List of libraries (Streamlit, Plotly, SHAP, etc.)
+└── README.md               # Project documentation & setup guide
+```
+
 Quickstart (Windows, PowerShell)
 1. Create & activate the venv (already created in this workspace):
 
