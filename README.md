@@ -1,7 +1,5 @@
 # AgriGuard — Explainable Agricultural Credit Risk Dashboard
 
-![TEST](assets/images/1.jpg)
-
 AgriGuard is an Explainable AI (XAI)–powered agricultural credit risk analysis application. The system predicts agricultural loan default (overdue) risk in Sri Lanka using a Gradient Boosting machine learning model while providing transparent, human-interpretable explanations through SHAP. The platform combines applied machine learning with practical financial decision support to ensure predictive accuracy, transparency, and ethical AI usage.
 
 Agricultural lending in Sri Lanka faces high uncertainty due to climate variability, income seasonality, regional disparities, and limited institutional supervision. Traditional rule-based credit assessment methods do not scale well, fail to capture nonlinear risk patterns, and lack the explainability required by modern financial regulations. AgriGuard addresses these limitations by integrating machine learning, explainable artificial intelligence, and interactive analytics into a unified decision-support system.
@@ -67,7 +65,7 @@ System architecture diagram:
 |  - Feature contributions   |
 +----------------------------+
 
-
+```
 
 ## 📁 Project Structure
 
@@ -148,10 +146,7 @@ AgriGuard uses SHAP (SHapley Additive exPlanations) to provide global explanatio
 
 ## 📊 Dashboard Preview (Sample Screens)
 
-The following images are sample placeholders representing the AgriGuard dashboard. Replace them with actual screenshots after running the application.
-
-
-![TEST](assets/images/1.jpg)
+The following images are sample placeholders representing the AgriGuard dashboard.
 
 ![Overview](assets/images/1.jpg)
 
