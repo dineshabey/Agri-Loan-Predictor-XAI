@@ -20,8 +20,6 @@ The AgriGuard platform follows a modern, modular, and explainable AI architectur
 
 System architecture diagram:
 
-System architecture diagram:
-
 ```text
 +----------------------------+
 |           End User         |
@@ -151,34 +149,26 @@ AgriGuard uses SHAP (SHapley Additive exPlanations) to provide global explanatio
 The following images are sample placeholders representing the AgriGuard dashboard. Replace them with actual screenshots after running the application.
 
 
-![Overview](assets/images/1.jpg)
+assets/images/1.jpg
 
-
-![Status](assets/images/2.jpg)
-
+assets/images/2.jpg
  
-![Division](assets/images/3.jpg)
+assets/images/3.jpg
 
+assets/images/4.jpg
+
+assets/images/5.jpg
+
+assets/images/6.jpg
+
+assets/images/7.jpg
  
-![Balance](assets/images/4.jpg)
+assets/images/8.jpg
 
+assets/images/9.jpg
 
-![Recovery](assets/images/5.jpg)
+assets/images/10.jpg
 
-
-![Officer](assets/images/6.jpg)
-
-
-![SHAP Global](assets/images/7.jpg)
-
-
-![SHAP Local](assets/images/8.jpg)
-
-
-![Prediction](assets/images/9.jpg)
-
-
-![Combined](assets/images/10.jpg)
 
 ## ⚖️ Ethical & Responsible AI
 
