@@ -1,126 +1,207 @@
-# AgriGuard — Credit Risk Dashboard (MSc Project)
+# AgriGuard — Explainable Agricultural Credit Risk Dashboard
 
-Lightweight Streamlit dashboard and FastAPI endpoint for credit-risk analysis and XAI visualizations.
+AgriGuard is an Explainable AI (XAI)–powered agricultural credit risk analysis application. The system predicts agricultural loan default (overdue) risk in Sri Lanka using a Gradient Boosting machine learning model while providing transparent, human-interpretable explanations through SHAP. The platform combines applied machine learning with practical financial decision support to ensure predictive accuracy, transparency, and ethical AI usage.
 
-Contents
-- `app.py` — Streamlit dashboard (UI + analytics)
-- `main.py` — FastAPI prediction endpoint example
-- `advanced_analytics.py`, `ml_monitoring.py` — helper modules for analytics and monitoring
-- `1_processed_loan_data_csv.csv` — sample dataset used by the app
-- `credit_risk_model.pkl`, `ordinal_encoder.pkl` — example saved model artifacts (if present)
+Agricultural lending in Sri Lanka faces high uncertainty due to climate variability, income seasonality, regional disparities, and limited institutional supervision. Traditional rule-based credit assessment methods do not scale well, fail to capture nonlinear risk patterns, and lack the explainability required by modern financial regulations. AgriGuard addresses these limitations by integrating machine learning, explainable artificial intelligence, and interactive analytics into a unified decision-support system.
 
-Project structure
------------------
-The repository follows this layout:
+The primary objectives of the system are to predict whether an agricultural loan will become Overdue or Non-Overdue, identify the key drivers behind loan default, provide both global and local explanations for every prediction, and support human-in-the-loop, ethical credit decision-making.
 
-```
-├── data/
-│   ├── raw/                # Original localized data
-│   └── processed/          # English-standardized CSVs
-├── notebooks/
-│   ├── preprocessing.ipynb # Data cleaning & translation scripts
-│   └── model_training.ipynb# HistGradientBoosting training & evaluation
-├── scripts/
-│   ├── explainability.py   # SHAP & Waterfall logic
-│   └── app.py              # Streamlit UI Source Code
-├── models/
-│   └── final_model.pkl     # Saved Gradient Boosting model
-├── requirements.txt        # List of libraries (Streamlit, Plotly, SHAP, etc.)
-└── README.md               # Project documentation & setup guide
-```
+AgriGuard provides credit risk prediction using a HistGradientBoostingClassifier trained on structured financial, behavioral, institutional, and geographic data. The interactive Streamlit dashboard offers portfolio-level risk summaries, division-wise default analysis, outstanding balance and recovery behavior insights, and officer assignment impact visualizations. Explainable AI is implemented using SHAP to generate global feature importance and local case-level explanations, ensuring transparency and auditability. An optional FastAPI backend exposes prediction functionality through a REST API, enabling system integration or deployment.
 
-**All Reports and data**
+Key insights delivered by the application include the strong influence of outstanding balance on default risk, improved repayment behavior for loans with assigned officers, the presence of region-specific risk patterns across agricultural divisions, and the importance of nonlinear feature interactions in default prediction.
 
-This folder contains raw data, trained model artifacts, notebooks used for analysis/training, and final report files (PDFs, DOCX). It's provided as a consolidated archive of project inputs and deliverables.
+## 🛠️ Technology Stack
 
-Example folder structure inside `All Reports and data`:
+Python, Streamlit for the interactive dashboard, FastAPI and Uvicorn for the REST API layer, Scikit-learn with HistGradientBoostingClassifier for modeling, SHAP for explainable AI, Pandas and NumPy for data processing, and Plotly or Matplotlib for visualization.
 
-```
-All Reports and data/
-├── raw/                   # Raw input datasets (CSV, Excel, etc.)
-├── models/                # Trained model artifacts (.pkl, .joblib)
-├── notebooks/             # Analysis & training notebooks (.ipynb)
-└── Report/                # Final reports, deliverables, and PDFs
-```
+## ⚙️ System Architecture
+
+The AgriGuard platform follows a modern, modular, and explainable AI architecture designed for reliability, transparency, and extensibility in financial risk assessment systems. Streamlit acts as the frontend interface for loan officers and analysts. FastAPI serves as the backend prediction layer, handling input validation and REST requests. The core Gradient Boosting model performs risk prediction, while the SHAP engine generates global and local explanations for each prediction. The entire system is Docker-ready and suitable for cloud or on-premise institutional deployment.
+
+System architecture diagram:
+
+System architecture diagram:
+
+```text
++----------------------------+
+|           End User         |
+|   (Loan Officer / Analyst) |
++-------------+--------------+
+              |
+              v
++----------------------------+
+|        Streamlit UI        |
+|  Interactive Dashboard     |
+|  - Portfolio Analytics     |
+|  - XAI Visualizations      |
++-------------+--------------+
+              |
+              | REST Calls (JSON)
+              v
++----------------------------+
+|           FastAPI          |
+|     Prediction API Layer   |
+|  - /predict endpoint       |
+|  - Input validation        |
++-------------+--------------+
+              |
+              v
++----------------------------+
+|  ML Inference Layer        |
+|  HistGradientBoosting      |
+|  (Scikit-learn Model)      |
++-------------+--------------+
+              |
+              v
++----------------------------+
+|     Explainability Layer   |
+|          SHAP Engine       |
+|  - Global explanations     |
+|  - Local explanations      |
++-------------+--------------+
+              |
+              v
++----------------------------+
+|   Results & Explanations   |
+|  - Prediction + Risk score |
+|  - Feature contributions   |
++----------------------------+
 
 
-Quickstart (Windows, PowerShell)
-1. Create & activate the venv (already created in this workspace):
 
-```powershell
-# from project folder
-.\.venv\Scripts\Activate.ps1
-```
+## 📁 Project Structure
 
-2. Install dependencies (already executed by the maintainer or run manually):
+Current lightweight structure:
 
-```powershell
-pip install -r requirements.txt
-```
+.
+├── app.py  
+├── main.py  
+├── advanced_analytics.py  
+├── ml_monitoring.py  
+├── 1_processed_loan_data_csv.csv  
+├── credit_risk_model.pkl  
+├── ordinal_encoder.pkl  
+├── requirements.txt  
+└── README.md  
 
-3. Run the Streamlit app:
+Recommended scalable structure:
 
-```powershell
-streamlit run app.py
-```
+.
+├── data/  
+│   ├── raw/  
+│   └── processed/  
+├── notebooks/  
+│   ├── preprocessing.ipynb  
+│   └── model_training.ipynb  
+├── scripts/  
+│   ├── explainability.py  
+│   └── app.py  
+├── models/  
+│   └── final_model.pkl  
+├── requirements.txt  
+└── README.md  
 
-4. Run the FastAPI server (optional):
+## 📦 All Reports and Data
 
-```powershell
-# serve the API in main.py on port 8000
-.\.venv\Scripts\python -m uvicorn main:app --host 127.0.0.1 --port 8000
-```
+The “All Reports and data” folder contains raw datasets, trained model artifacts, notebooks used for analysis and training, and final reports (PDF/DOCX), ensuring transparency and reproducibility.
 
-Notes
-- If `credit_risk_model.pkl` or `ordinal_encoder.pkl` are missing, the API will fail to load the model — replace with your trained artifacts or adjust the code.
-- `requirements.txt` lists the packages detected in the codebase; pin versions as needed for reproducibility.
+## ⚡ Quickstart (Windows – PowerShell)
 
-Virtual environment (recommended)
---------------------------------
-These commands show how to create, activate, and use a virtual environment. Replace `.venv` with your preferred name if desired. Run commands from the project root (`app_new`).
+Activate virtual environment:  
+.\.venv\Scripts\Activate.ps1  
 
-PowerShell (Windows - recommended):
-```powershell
-# create venv
-python -m venv .venv
+Install dependencies:  
+pip install -r requirements.txt  
 
-# activate venv in PowerShell
-.\\.venv\\Scripts\\Activate.ps1
+Run Streamlit dashboard:  
+streamlit run app.py  
 
-# install requirements
-pip install -r requirements.txt
+## 🌐 FastAPI Service (Optional)
 
-# deactivate when done
-deactivate
-```
+Start API server:  
+python -m uvicorn main:app --host 127.0.0.1 --port 8000  
 
-Command Prompt (cmd.exe):
-```bat
-python -m venv .venv
-.\\.venv\\Scripts\\activate.bat
-pip install -r requirements.txt
-deactivate
-```
+API documentation:  
+http://127.0.0.1:8000/docs  
 
-Git Bash / WSL / macOS / Linux (bash):
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-deactivate
-```
+Example API request:
 
-Verify environment python:
-```powershell
-# prints venv python path
-where python
-# or
-python -c "import sys; print(sys.executable)"
-```
+POST /predict  
+{  
+  "Loan_Amount": 250000,  
+  "Outstanding_Balance": 180000,  
+  "Total_Recovery": 70000,  
+  "Officer_Assigned": 1,  
+  "Agricultural_Division": "Diwulwewa"  
+}  
 
-Troubleshooting
-- If activation is blocked in PowerShell, run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force` as administrator, then re-run activation.
-- If `pip install` fails for compiled packages (e.g., `llvmlite`, `scipy`), ensure you have a compatible Python version and the Microsoft C++ build tools installed.
+Example API response:
 
-Contact
-- For help running or packaging this project further, tell me what platform and goal (deploy, containerize, etc.) you want next.
+{  
+  "prediction": "Overdue",  
+  "risk_score": 0.87  
+}  
+
+## 🔍 Explainable AI (XAI)
+
+AgriGuard uses SHAP (SHapley Additive exPlanations) to provide global explanations that identify the most influential features across the loan portfolio and local explanations that justify individual predictions. This ensures transparency, regulatory compliance, and trust in AI-assisted credit decisions.
+
+## 📊 Dashboard Preview (Sample Screens)
+
+The following images are sample placeholders representing the AgriGuard dashboard. Replace them with actual screenshots after running the application.
+
+
+![Overview](assets/images/1.jpg)
+
+
+![Status](assets/images/2.jpg)
+
+ 
+![Division](assets/images/3.jpg)
+
+ 
+![Balance](assets/images/4.jpg)
+
+
+![Recovery](assets/images/5.jpg)
+
+
+![Officer](assets/images/6.jpg)
+
+
+![SHAP Global](assets/images/7.jpg)
+
+
+![SHAP Local](assets/images/8.jpg)
+
+
+![Prediction](assets/images/9.jpg)
+
+
+![Combined](assets/images/10.jpg)
+
+## ⚖️ Ethical & Responsible AI
+
+No personally identifiable information is used. AI outputs are intended as decision support rather than automated approvals. Human oversight remains essential to prevent bias and ensure fair lending practices.
+
+## 🛠️ Troubleshooting
+
+If PowerShell activation is blocked:  
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force  
+
+For dependency issues:  
+python -m pip install --upgrade pip setuptools wheel  
+
+Recommended Python version: 3.9+
+
+## 🔮 Future Enhancements
+
+Climate and weather data integration, satellite imagery for crop health monitoring, real-time loan monitoring and drift detection, LLM and RAG-based natural-language explanations, and fairness and bias auditing modules.
+
+## 👤 Author
+
+P. D. Abeysinghe  
+Research Area: Explainable AI for Agricultural Credit Risk Assessment  
+Country Focus: Sri Lanka  
+
+AgriGuard — Transparent, Explainable, and Ethical AI for Agricultural Finance
