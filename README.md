@@ -149,6 +149,8 @@ AgriGuard uses SHAP (SHapley Additive exPlanations) to provide global explanatio
 The following images are sample placeholders representing the AgriGuard dashboard. Replace them with actual screenshots after running the application.
 
 
+![TEST](assets/images/1.jpg)
+
 ![Overview](assets/images/1.jpg)
 
 ![Status](assets/images/2.jpg)
