@@ -68,22 +68,7 @@ System architecture diagram:
 ```
 
 ## 📁 Project Structure
-
-Current lightweight structure:
-
-.
-├── app.py  
-├── main.py  
-├── advanced_analytics.py  
-├── ml_monitoring.py  
-├── 1_processed_loan_data_csv.csv  
-├── credit_risk_model.pkl  
-├── ordinal_encoder.pkl  
-├── requirements.txt  
-└── README.md  
-
-Recommended scalable structure:
-
+```text
 .
 ├── data/  
 │   ├── raw/  
@@ -98,7 +83,7 @@ Recommended scalable structure:
 │   └── final_model.pkl  
 ├── requirements.txt  
 └── README.md  
-
+```
 ## 📦 All Reports and Data
 
 The “All Reports and data” folder contains raw datasets, trained model artifacts, notebooks used for analysis and training, and final reports (PDF/DOCX), ensuring transparency and reproducibility.
